@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextResponse } from 'next/server'
-import dbConnect from '../../../lib/mongodb'
-import Event from '../../../models/Event'
+import dbConnect from '../../lib/mongodb'
+import Event from '../../models/Event'
 
 export async function GET() {
   await dbConnect()

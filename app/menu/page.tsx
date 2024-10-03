@@ -1,11 +1,11 @@
 import { Suspense } from 'react'
-import MenuSection from '../../components/menu/MenuSection'
-import { getMenuItems } from '../../lib/api'
+import MenuSection from '../components/menu/MenuSection'
+import { getMenuItems } from '../lib/api'
 import { Skeleton } from "@/components/ui/skeleton"
 
 export default async function MenuPage() {
   const menuItems = await getMenuItems()
-  const categories = [...new Set(menuItems.map((item) => item.category))]
+  const categories = [...new Set(menuItems.map((item: { category: string }) => item.category))]
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -15,7 +15,7 @@ export default async function MenuPage() {
           <MenuSection
             key={category}
             category={category}
-            items={menuItems.filter((item) => item.category === category)}
+            items={menuItems.filter((item: { category: string }) => item.category === category)}
           />
         ))}
       </Suspense>

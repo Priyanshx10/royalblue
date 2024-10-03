@@ -1,25 +1,38 @@
-import Link from 'next/link'
-import { Button } from "@/components/ui/button"
-import RestaurantScene from '../app/components/3d/RestaurantModel'
+'use client'
 
-export default function Home() {
+import React, { Suspense, useRef } from 'react'
+import { Canvas, useFrame } from '@react-three/fiber'
+import { OrbitControls, Environment, Box } from '@react-three/drei'
+import * as THREE from 'three'
+
+function RestaurantModel() {
+  const modelRef = useRef<THREE.Mesh>(null)
+
+  useFrame((state) => {
+    if (modelRef.current) {
+      modelRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.2) * 0.2
+    }
+  })
+
   return (
-    <div className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl md:text-6xl font-bold text-center mb-8 text-primary">Welcome to Gourmet Haven</h1>
-      <div className="h-[400px] md:h-[600px] w-full mb-12">
-        <RestaurantScene />
-      </div>
-      <p className="text-center text-xl md:text-2xl mb-8 text-muted-foreground">
-        Experience culinary excellence in a luxurious 3D environment
-      </p>
-      <div className="flex justify-center space-x-4">
-        <Button asChild size="lg">
-          <Link href="/menu">Explore Menu</Link>
-        </Button>
-        <Button asChild size="lg" variant="outline">
-          <Link href="/contact">Make a Reservation</Link>
-        </Button>
-      </div>
+    <Box ref={modelRef} args={[1, 1, 1]} scale={[0.5, 0.5, 0.5]}>
+      <meshStandardMaterial color="hotpink" />
+    </Box>
+  )
+}
+
+export default function RestaurantScene() {
+  return (
+    <div className="w-full h-full">
+      <Canvas camera={{ position: [5, 5, 5], fov: 50 }}>
+        <ambientLight intensity={0.5} />
+        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+        <Suspense fallback={null}>
+          <RestaurantModel />
+          <Environment preset="sunset" background />
+        </Suspense>
+        <OrbitControls enableZoom={false} enablePan={false} />
+      </Canvas>
     </div>
   )
 }

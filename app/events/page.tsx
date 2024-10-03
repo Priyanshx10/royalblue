@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
-import EventList from '../../components/events/EventList'
-import { getEvents } from '../../lib/api'
+import EventList from '../components/events/EventList'
+import { getEvents } from '../lib/api'
 import { Skeleton } from "@/components/ui/skeleton"
 
 export default async function EventsPage() {
