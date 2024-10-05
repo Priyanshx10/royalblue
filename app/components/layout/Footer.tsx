@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-xl font-semibold mb-4">Gourmet Haven</h3>
+            <h3 className="text-xl font-semibold mb-4">Royal Blue</h3>
             <p className="text-sm">Experience culinary excellence in a luxurious setting.</p>
           </div>
           <div>
@@ -29,7 +29,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-primary-foreground/10 text-center text-sm">
-          © {new Date().getFullYear()} Gourmet Haven. All rights reserved.
+          © {new Date().getFullYear()} Royal Blue. All rights reserved.
         </div>
       </div>
     </footer>

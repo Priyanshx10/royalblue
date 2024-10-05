@@ -9,7 +9,7 @@ export async function getMenuItems() {
   const menuItems = await MenuItem.find({}).lean()
   return menuItems.map((item) => ({
     ...item,
-    _id: item._id.toString(),
+    _id: item._id.toString(), // item._id is now of type ObjectId
   }))
 }
 
@@ -18,7 +18,7 @@ export async function getEvents() {
   const events = await Event.find({}).sort({ date: 1 }).lean()
   return events.map((event) => ({
     ...event,
-    _id: event._id.toString(),
+    _id: event._id.toString(), 
     date: event.date.toISOString(),
   }))
 }

@@ -22,7 +22,7 @@ export default function Header() {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="text-2xl font-bold text-primary">
-            Gourmet Haven
+            Royal Blue
           </Link>
           <nav className="hidden md:flex space-x-4">
             {navItems.map((item) => (
